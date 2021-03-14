@@ -1,34 +1,23 @@
-const Post = require('./Post');
-const User = require('./User');
-const Comment = require('./Comment');
+const seedPosts = require('./post-seeds');
+const seedUsers = require('./user-seeds');
+const seedComments = require('./comment-seeds');
 
-// create associations
-User.hasMany(Post, {
-    foreignKey: 'user_id'
-});
+const sequelize = require('../config/connection');
 
-Post.belongsTo(User, {
-    foreignKey: 'user_id',
-    onDelete: 'SET NULL'
-});
+const seedAll = async () => {
+await sequelize.sync({ force: true });
+    console.log('\n----- DATABASE SYNCED -----\n');
 
-Comment.belongsTo(User, {
-    foreignKey: 'user_id',
-    onDelete: 'SET NULL'
-});
+await seedUsers();
+    console.log('\n----- USERS SEEDED -----\n');
 
-Comment.belongsTo(Post, {
-    foreignKey: 'post_id',
-    onDelete: 'SET NULL'
-});
+await seedPosts();
+    console.log('\n----- POSTS SEEDED -----\n');
 
-User.hasMany(Comment, {
-    foreignKey: 'user_id',
-    onDelete: 'SET NULL'
-});
+await seedComments();
+    console.log('\n----- COMMENTS SEEDED -----\n');
 
-Post.hasMany(Comment, {
-    foreignKey: 'post_id'
-});
+    process.exit(0);
+};
 
-module.exports = { User, Post, Comment };
+seedAll();
