@@ -4,49 +4,39 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>TECH BLOG</title>
-  
+  <title>MVC Tech Blog</title>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
   <link rel="stylesheet" href="/stylesheets/style.css">
-  
 </head>
 
-  <div class="wrapper">
+<body>
+
     <header>
-        <h1>TECH BLOG</h1>
-        <nav>
-            {{#if loggedIn}}
-            <a href="/">homepage</a>
-            <a href="/dashboard">dashboard</a>
-            <a href="/dashboard/create/">create post</a>
-            <button id="logout">logout</button>
-            {{else}}
-            <a href="/">homepage</a>
-            <a href="/login">login</a>
-            {{/if}}
-        </nav>
+      <h1>
+        
+      </h1>
+      <nav class="navbar navbar-expand-lg navbar-light bg-light justify-content-between">
+        {{#if loggedIn}}
+        <a class = "navbar-brand" href="/">MVC Tech Blog</a>
+
+        <a class="nav-link"href="/dashboard">Dashboard</a>
+        <button id="logout" class="nav-link">Logout</button>
+        {{else}}
+        <a class = "navbar-brand" href="/">MVC Tech Blog</a>
+        <a class ="nav-link"href="/login">Login</a>
+        {{/if}}
+      </nav>
     </header>
-
     <main>
-            {{{ body }}}
+      {{{ body }}}
     </main>
+    <footer>
+      Thanks for checking out the blog!
 
-    <footer >
-        <div>
-            <p>
-            <a href="/">homepage</a>{{#if loggedIn}} | 
-            <a href="/dashboard/">dashboard</a> | 
-            <a href="/dashboard/create/">create new post</a>
-            {{else}}
-            | <a href="/login/">login</a>
-            {{/if}}
-            </p>
-        </div>
-    </footer>
-  </div>
-
-{{#if loggedIn}}
-<script src="/javascript/logout.js"></script>
-{{/if}}
+  
+  {{#if loggedIn}}
+  <script src="/javascript/logout.js"></script>
+  {{/if}}
 </body>
 
 </html>

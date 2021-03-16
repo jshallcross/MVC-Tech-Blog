@@ -1,8 +1,7 @@
-{{#each posts as |post|}}
-
-{{> post-data post }}
-</div>
-
-{{else}}
-<h6>there are currently no posts</h6>
-{{/each}}
+<ul class="post-list">
+  {{#each posts as |post|}}
+  <li>
+    {{> post-data post }}
+  </li>
+  {{/each}}
+</ul>
